@@ -4,13 +4,11 @@ RDIR="$(dirname "${0}")"
 JAVA_HOME=$(/usr/libexec/java_home -v1.8)
 CIQ_PATH="$(cat ${HOME}/Library/Application\ Support/Garmin/ConnectIQ/current-sdk.cfg)/bin"
 PRIVATE_KEY="${RDIR}/key/sauce4garmin_developer_key.der"
+CURRENT_DEVICE=edge830
 
 export PATH="${PATH}:${CIQ_PATH}"
 
 MINSDKVERSION="$(grep -oE 'minSdkVersion="[^"]*"' "${RDIR}/manifest.xml" | grep -oE '"[^"]*"' | tr -d '"')"
-DEVICES="$(grep -F '<iq:product id="' "${RDIR}/manifest.xml" | grep -oE '"[^"]*"' | tr -d '"')"
-NB_DEVICES="$(printf "${DEVICES}\n" | wc -l)"
-CURRENT_DEVICE="$(printf "${DEVICES}\n" | head -n 1)"
 
 SIMULATOR_INI="${HOME}/Library/Application Support/Garmin/ConnectIQ/simulator.ini"
 TTY_MODEM="$(ls /dev/tty.usbmodem* 2> /dev/null | head -n 1)"
