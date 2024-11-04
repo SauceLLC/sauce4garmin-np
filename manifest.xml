@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <iq:manifest version="3" xmlns:iq="http://www.garmin.com/xml/connectiq">
     <iq:application id="cf52e13d-2c46-434e-9d33-d410ab6cf005" type="datafield"
-                    version="0.0.0" name="@Strings.AppName" entry="SauceApp"
+                    version="0.0.1" name="@Strings.AppName" entry="SauceApp"
                     launcherIcon="@Drawables.LauncherIcon" minApiLevel="3.2.0">
         <iq:products>
             <iq:product id="edge130plus"/>
