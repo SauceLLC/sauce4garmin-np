@@ -4,7 +4,8 @@ RDIR="$(dirname "${0}")"
 JAVA_HOME=$(/usr/libexec/java_home -v1.8)
 CIQ_PATH="$(cat ${HOME}/Library/Application\ Support/Garmin/ConnectIQ/current-sdk.cfg)/bin"
 PRIVATE_KEY="${RDIR}/key/sauce4garmin_developer_key.der"
-CURRENT_DEVICE=edge830
+#CURRENT_DEVICE=edge830
+CURRENT_DEVICE=edge130plus
 
 export PATH="${PATH}:${CIQ_PATH}"
 
