@@ -46,14 +46,14 @@ function _simu() {
 }
 
 function _clean() {
-    printf " Clean / Options: ${CURRENT_OPTS}\n"
+    printf "Clean / Options: ${CURRENT_OPTS}\n"
     rm -f "${SIMULATOR_INI}"
     pkill simulator || true
     rm -rf "${RDIR}/bin"
 }
 
 function _doc() {
-    printf " Doc   / Options: ${CURRENT_OPTS}\n"
+    printf "Doc   / Options: ${CURRENT_OPTS}\n"
     monkeydoc ${CURRENT_OPTS} \
         -Wall \
         --api-mir "${CIQ_PATH}/api.mir" \
@@ -62,7 +62,7 @@ function _doc() {
 }
 
 function _pack() {
-    printf " Pack  / Options: ${CURRENT_OPTS}\n"
+    printf "Pack  / Options: ${CURRENT_OPTS}\n"
     monkeyc ${CURRENT_OPTS} \
         --release \
         --package-app \
@@ -75,7 +75,8 @@ function _pack() {
 }
 
 function _build() {
-    printf " Build / Device: ${CURRENT_DEVICE} / Options: ${CURRENT_OPTS}\n"
+    printf "Build / Device: ${CURRENT_DEVICE} / Options: ${CURRENT_OPTS}\n"
+    set -x
     monkeyc ${CURRENT_OPTS} \
         --warn \
         --typecheck   3 \
@@ -86,18 +87,18 @@ function _build() {
 }
 
 function _run() {
-    printf " Run   / Device: ${CURRENT_DEVICE} / Options: ${CURRENT_OPTS}\n"
+    printf "Run   / Device: ${CURRENT_DEVICE} / Options: ${CURRENT_OPTS}\n"
+    set -x
+    _build
     _simu
-    if ! [ -f "${RDIR}/bin/sauce4garmin-np-${CURRENT_DEVICE}.prg" ] ; then
-        _build
-    fi
+    sleep 4
     monkeydo ${CURRENT_OPTS} \
         "${RDIR}/bin/sauce4garmin-np-${CURRENT_DEVICE}.prg" \
         ${CURRENT_DEVICE}
 }
 
 function _debug() {
-    printf " Debug / Device: ${CURRENT_DEVICE} / Options: ${CURRENT_OPTS}\n"
+    printf "Debug / Device: ${CURRENT_DEVICE} / Options: ${CURRENT_OPTS}\n"
     _simu
     if ! [ -f "${RDIR}/bin/sauce4garmin-np-${CURRENT_DEVICE}.prg" ] ; then
         _build

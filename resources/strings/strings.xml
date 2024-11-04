@@ -1,4 +1,3 @@
 <strings>
-    <string id="AppName">${appName}</string>
-    <string id="SauceGarminNP">Sauce Garmin NP</string>
+    <string id="AppName">Sauce NP</string>
 </strings>
